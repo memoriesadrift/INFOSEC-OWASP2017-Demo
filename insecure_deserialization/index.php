@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 
 <?php
+    error_reporting(E_ALL);
 
-    if ($_COOKIE['serialized_user'] != ""){
+    if (isset($_COOKIE['serialized_user']) && $_COOKIE['serialized_user'] != ""){
         header("Location: website.php");
         exit();
     }
     
     
-    if ($_POST['username'] != "" && $_POST['password'] != "") {
+    if (isset($_POST['username'], $_POST['password']) && $_POST['username'] != "" && $_POST['password'] != "") {
+        //phpinfo();
+        require_once ("user.php");
         
-        class User {
-            public $username;
-            public $password;
-            public $role;
-        }
+        $user = new User($_POST['username'], $_POST['password']);
         
-        $user = new User;
-        $user->$username = $_POST['username'];
-        $user->$password = $_POST['password'];
-        
-        if ($user->$username == "Michal" && $user->$password == "Pasword123")
-            $user->$role = "admin";
-        else
-            $user->$role = "user";
-        
-        set_cookie("serialized_user", serialize($user));
+        setcookie("serialized_user", serialize($user));
         header("Location: website.php");
+        exit();
     }
 ?>
 
@@ -42,7 +33,7 @@
             <input type="text" id="username" name="username"/><br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password"/><br>
-            <input type="submit">Submit</input>
+            <input type="submit" value="Submit"/>
         </form>
     </body>
 
