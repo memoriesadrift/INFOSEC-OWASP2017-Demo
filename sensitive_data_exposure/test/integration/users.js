@@ -42,7 +42,7 @@ contract('users', () => {
 
 		const bobInfo = await storage.users.call(1);
 		const aliceInfo = await storage.users.call(2);
-		const tx = await storage.sendFunds(bobInfo[0], aliceInfo[0], bobInfo[3]);
+		const tx = await storage.sendFunds(bobInfo[0], aliceInfo[0], bobInfo[3], 10);
 
 		const newAliceInfo  = await storage.users.call(2);
 		assert.equal(newAliceInfo[2], 110);
