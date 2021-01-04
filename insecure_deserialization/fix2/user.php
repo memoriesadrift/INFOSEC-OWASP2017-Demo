@@ -17,22 +17,21 @@
                 $this->role = "user";
 
             $this->logFileName = $username.".log";
-            $this->file = fopen($this->logFileName, "a");
+            echo $this->logFileName;
             /*
             File put contentes would not work and would fail. The creator of this websites searches for the solution and stumbles upon this stakckoverflow post:
                 https://stackoverflow.com/questions/4917811/file-put-contents-failed-to-open-stream-permission-denied
             After running chmod 777 on his /var/www/html/... folder everything works as expected :)
             */
-            file_put_contents($this->file, "Starting log:\n") or die("this is so sad :(");
+            file_put_contents($this->logFileName, "Starting log:\n", FILE_APPEND) or die("this is so sad :(");
         }
 
         function __destruct() {
-            file_put_contents($this->file, "Log ended\n", FILE_APPEND);
+            file_put_contents($this->logFileName, "Log ended\n", FILE_APPEND);
         }
 
         function __wakeup() {
-            $this->file = fopen($this->logFileName, "a");
-            fwrite($this->file, "Resuming log:\n", FILE_APPEND);
+            file_put_contents($this->logFileName, "Resuming log:\n", FILE_APPEND);
         }
 
         
