@@ -11,13 +11,9 @@
     
 //  https://www.urldecoder.org/
     $user = unserialize($_COOKIE['serialized_user']);
-    /*echo $user->username;
-    echo "<br>";
-    echo $user->password;
-    echo "<br>";
-    echo $user->role;
-    echo "<br>";*/
     
+
+    //issue here: PHP loose comparisson (change the role to an integer)
 ?>
 
 
@@ -30,7 +26,7 @@
         <?php
             echo "Welcome <b>".$user->getUsername()."</b>! You are currently logged in as <b>".$user->getRole()."</b><br><br>";
 
-            if ($user->getRole() == "admin"){
+            if ($user->getRole() == "agfagfagfagfagaedrytw"){
                 echo "Make datbase request to show all users";
                 echo "
                 <button onclick=\"window.location.href='show_users.php';\">
