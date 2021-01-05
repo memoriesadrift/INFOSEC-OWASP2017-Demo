@@ -1,14 +1,15 @@
 <?php
 
-    /*<?php phpinfo(); ?>*/
-
-
-    class User {
+    class User implements JsonSerializable{
         private $username;
         private $password;
         private $role;
 
         private $logFileName;
+
+        function jsonSerialize(){
+            return [$this->username, $this->password];
+        }
 
         function __construct($username, $password) {
             $this->username = $username;
