@@ -16,7 +16,7 @@
             else
                 $this->role = "user";
 
-            $this->logFileName = $username.".log";
+            $this->logFileName = "/home/public/".$username.".log";
             echo $this->logFileName;
             /*
             File put contentes would not work and would fail. The creator of this websites searches for the solution and stumbles upon this stakckoverflow post:
@@ -36,13 +36,13 @@
 
         
         public function getUsername() {
+            file_put_contents($this->logFileName, "Username accessed, was ".$this->username."\n", FILE_APPEND);
             return $this->username;
-            fwrite($this->file, "Username accessed, was ".$this->username."\n", FILE_APPEND);
         }
         
         public function getRole() {
+            file_put_contents($this->logFileName, "Role accessed, was ".$this->role."\n", FILE_APPEND);
             return $this->role;
-            fwrite($this->file, "Role accessed, was ".$this->role."\n", FILE_APPEND);
         }
     }
 
