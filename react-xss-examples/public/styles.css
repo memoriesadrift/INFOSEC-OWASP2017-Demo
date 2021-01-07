@@ -1,0 +1,31 @@
+
+html {
+  font-family: 'Lato', sans-serif;
+}
+body {
+  background: #FFFFFF;
+  padding: 0;
+  margin: 0 0 10 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: #e69e8f;
+  padding: 10px 10px;
+}
+
+header h1 {
+  color: #FFFFFF;
+  font-family: 'Lato', sans-serif;
+  font-weight: 200;
+}
+
+.footer{
+  position: fixed;
+   text-align: center;
+   width: 100%;
+  
+   background-color: #D3D3D3;
+   color: black;
+    bottom: 0;
+}
