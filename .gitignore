@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 *.DS_Stores
 sensitive_data_exposure/node_modules
+=======
+/react-xss-examples/.DS_Store
+/react-xss-examples/node_modules
+
+>>>>>>> 0463912f8fefb784f45384c13e5800c0051b2e18
