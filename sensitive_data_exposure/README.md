@@ -1,4 +1,4 @@
-= Running Locally =
+# Running Locally
 1. Install all dependencies with `npm install`
 2. Install ganache with `npm install -g ganache-cli`
 3. Install truffle with `npm install -g truffle`
