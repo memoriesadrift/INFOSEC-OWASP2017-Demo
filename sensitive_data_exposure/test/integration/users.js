@@ -1,4 +1,5 @@
 const MoneyExchange = artifacts.require('MoneyExchange')
+const SecureMoneyExchange = artifacts.require('SecureMoneyExchange')
 
 contract('users', () => {
     it("Accounts can be created", async () => {
@@ -64,5 +65,45 @@ contract('users', () => {
             assert.equal(bobPw, bobInfo[3]);
             
     });
+
+    it("Secure Contract - Balance can be viewed", async () => {
+            const storage = await SecureMoneyExchange.deployed();
+            const bobUsername = web3.utils.fromAscii("bob");
+            const bobPw = web3.utils.fromAscii("bob123");
+            
+            const bobTx = await storage.setupAccount(bobUsername, bobPw);
+            const balance = await storage.viewAccountBalance(1);
+
+
+            assert.equal(parseInt(balance), 100);
+    });
+
+    it("Secure Contract - Funds can be transferred", async () => {
+            const storage = await SecureMoneyExchange.deployed();
+            const bobUsername = web3.utils.fromAscii("bob");
+            const aliceUsername = web3.utils.fromAscii("alice");
+            const bobPw = web3.utils.fromAscii("bob123");
+            const alicePw = web3.utils.fromAscii("alice123");
+
+            const bobTx = await storage.setupAccount(bobUsername, bobPw);
+            const aliceTx = await storage.setupAccount(aliceUsername, alicePw);
+
+            const tx = await storage.sendFunds(1, 2, bobPw, 10);
+
+            const newAliceInfo  = await storage.viewAccountBalance(2);
+            assert.equal(parseInt(newAliceInfo), 110);
+    });
     
+    it("Secure Contract - Security Breach Fixed!", async () => {
+            const storage = await SecureMoneyExchange.deployed();
+            const bobUsername = web3.utils.fromAscii("bob");
+            const aliceUsername = web3.utils.fromAscii("alice");
+            const bobPw = web3.utils.fromAscii("bob123");
+            const alicePw = web3.utils.fromAscii("alice123");
+
+            const bobId = await storage.setupAccount(bobUsername, bobPw);
+            const aliceId = await storage.setupAccount(aliceUsername, alicePw);
+
+            assert.equal(storage.users, undefined); 
+    });
 })
