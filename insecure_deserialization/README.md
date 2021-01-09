@@ -6,6 +6,6 @@ For an explanation on what is happening in these examples and where the insecure
 
 Feel free to submit an issue or contact me if anything does not work on your end.
 
-Some ideas demonstrated in this project are taken from:
+Some ideas demonstrated in this project are taken from: <br>
 https://medium.com/bugbountywriteup/demystifying-insecure-deserialization-in-php-684cab9c4d24, (accessed 9.1.2021)
 https://www.exit.wtf/vrd/2019/04/04/Insecure_Deserialization.html, (accessed 9.1.2021)
