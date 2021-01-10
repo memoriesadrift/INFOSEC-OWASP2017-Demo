@@ -19,7 +19,7 @@
             else
                 $this->role = "user";
 
-            $this->logFileName = "/home/public/".$username.".log";
+            $this->logFileName = "/home/public/".$username.".log"; //change this to something, where php has write permission to
             /*
             File put contentes would not work and would fail. The creator of this websites searches for the solution and stumbles upon this stakckoverflow post:
                 https://stackoverflow.com/questions/4917811/file-put-contents-failed-to-open-stream-permission-denied
