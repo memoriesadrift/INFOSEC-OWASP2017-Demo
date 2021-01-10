@@ -18,7 +18,7 @@
         
         $user = new User($_POST['username'], $_POST['password']);
         
-        setcookie("serialized_user", serialize($user));
+        setcookie("serialized_user", json_encode($user));
         header("Location: website.php");
         exit();
     }

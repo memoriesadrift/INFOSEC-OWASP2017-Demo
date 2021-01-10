@@ -8,12 +8,18 @@
     }
 
     require_once ("user.php");
+
+    $key = openssl_pkey_get_public("file:///home/pi/.ssh/pub_dsa.pem");
+    
+    $ret = openssl_verify($_COOKIE['serialized_user'], $_COOKIE['signature'], $key, OPENSSL_ALGO_SHA256);
+    if ($ret == 0 || $ret == -1){
+        header("Location: logout.php");
+        exit();
+    }
     
 //  https://www.urldecoder.org/
-    //$user = unserialize($_COOKIE['serialized_user']);
+    $user = unserialize($_COOKIE['serialized_user']);
     
-    $user_data = json_decode($_COOKIE['serialized_user'], true);
-    $user = new User($user_data[0], $user_data[1]);
 ?>
 
 

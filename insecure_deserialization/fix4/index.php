@@ -17,8 +17,17 @@
         require_once ("user.php");
         
         $user = new User($_POST['username'], $_POST['password']);
+
+        echo openssl_get_curve_names();
+
         
-        setcookie("serialized_user", json_encode($user));
+        $key = openssl_get_privatekey("file:///home/pi/.ssh/id_rsa.pem", "");
+        $serilaized = serialize($user);
+        $signature;
+        openssl_sign($serilaized, $signature, $key, OPENSSL_ALGO_SHA256);
+
+        setcookie("serialized_user", serialize($user));
+        setcookie("signature", $signature);
         header("Location: website.php");
         exit();
     }

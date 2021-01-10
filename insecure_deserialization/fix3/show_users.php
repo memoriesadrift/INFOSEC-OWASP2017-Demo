@@ -8,8 +8,10 @@
     }
     
     require_once ("user.php");
-    $user = unserialize($_COOKIE['serialized_user']);
-    
+    //$user = unserialize($_COOKIE['serialized_user']);
+    $user_data = json_decode($_COOKIE['serialized_user'], true);
+    $user = new User($user_data[0], $user_data[1]);
+
     //off intrest
     if ($user->getRole() !== "agfagfagfagfagaedrytw"){
         header("Location: website.php");
