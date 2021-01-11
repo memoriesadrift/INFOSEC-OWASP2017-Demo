@@ -16,7 +16,7 @@ import InnerHtmlSecure from "./InnerHtmlSecure.jsx";
       <InputFieldSecure />
       <InnerHtmlInsecure />
       <InnerHtmlSecure />
-      <Footer />
+      <Footer/>
     </div>
   }
 
